@@ -1,10 +1,10 @@
 import sys
 import subprocess
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QSplashScreen, QWidget, QPushButton, QVBoxLayout, QMessageBox, QGridLayout, QLabel,QHBoxLayout
+    QApplication, QMainWindow, QSplashScreen, QWidget, QPushButton, QVBoxLayout, QMessageBox, QGridLayout, QLabel, QHBoxLayout
 )
-from PyQt5.QtGui import QFont, QPixmap, QPalette, QImage, QBrush, QDesktopServices, QMovie
-from PyQt5.QtCore import Qt, QTimer, QUrl, QSize
+from PyQt5.QtGui import QFont, QPixmap, QPalette, QImage, QBrush, QDesktopServices
+from PyQt5.QtCore import Qt, QTimer, QUrl
 
 
 class AnimationWindow:
@@ -46,64 +46,53 @@ class AnimationWindow:
 
     def create_main_window(self):
         layout = QVBoxLayout()
-        grid_layout = QGridLayout()
-
-        layout = QVBoxLayout()
         horizontal_layout = QHBoxLayout()  # Create a horizontal layout
 
         # Create a QLabel for the heading
         heading_label = QLabel("Welcome to CipherShield")
         heading_label.setFont(QFont("Arial", 44, QFont.Bold))
         heading_label.setStyleSheet("color: white;")
+
+        # Description paragraph
         paragraph_label = QLabel(
-        "This toolkit is designed to enhance your digital security by offering essential tools for password management. The Password Manager securely stores and organizes your credentials, while the Password Generator creates strong, unique passwords to protect your accounts. Use the Password Strength Checker to evaluate your existing passwords and receive improvement suggestions. The IP Lookup tool provides insights into your IP address and geolocation, helping you understand potential security risks. Finally, the Encryption/Decryption feature secures sensitive data, ensuring unauthorized access is prevented. Choose an option from the menu to get started and enhance your online safety."
+            "This toolkit is designed to enhance your digital security by offering essential tools for password management. "
+            "The Password Manager securely stores and organizes your credentials, while the Password Generator creates strong, unique passwords "
+            "to protect your accounts. Use the Password Strength Checker to evaluate your existing passwords and receive improvement suggestions. "
+            "The IP Lookup tool provides insights into your IP address and geolocation, helping you understand potential security risks. "
+            "Finally, the Encryption/Decryption feature secures sensitive data, ensuring unauthorized access is prevented."
         )
         paragraph_label.setFont(QFont("Arial", 18))
         paragraph_label.setStyleSheet("color: white;")
-        paragraph_label.setWordWrap(True)  # Allow the paragraph to wrap
-        # Create a vertical layout for the text
+        paragraph_label.setWordWrap(True)
+
+        # Layout for heading and paragraph
         text_layout = QVBoxLayout()
         text_layout.addWidget(heading_label)
         text_layout.addWidget(paragraph_label)
 
-        # Create a grid layout for the buttons
+        # Grid layout for buttons
         grid_layout = QGridLayout()
-        # GitHub Repository Button
-        github_button = self.create_button(
-            "GitHub Repository",
-            self.open_github_repo,
-            font_size=18,
-            align=Qt.AlignRight
-        )
-        grid_layout.addWidget(github_button, 1, 0, 1, 1)
 
-        # Toolkit Button
-        toolkit_button = self.create_button(
-            "Toolkit",
-            self.open_toolkit,
-            font_size=18,
-            align=Qt.AlignRight
-        )
-        grid_layout.addWidget(toolkit_button, 2, 0, 1, 1)
+        # Add buttons to grid layout
+        buttons = [
+            ("GitHub Repository", self.open_github_repo),
+            ("Toolkit", self.open_toolkit),
+            ("Team Members", self.open_team_members),
+            ("Quit", self.confirm_quit_direct)
+        ]
 
-        # Quit Button
-        quit_button = self.create_button(
-            "Quit",
-            self.confirm_quit_direct,
-            font_size=18,
-            align=Qt.AlignRight
-        )
-        grid_layout.addWidget(quit_button, 3, 0, 1, 1)
+        for i, (text, method) in enumerate(buttons):
+            button = self.create_button(text, method)
+            grid_layout.addWidget(button, i, 0, 1, 1)
 
-        horizontal_layout.addLayout(text_layout)  # Add the text layout on the left
-        horizontal_layout.addLayout(grid_layout)  # Add the buttons layout on the right
-
-        # Add the horizontal layout to the main layout
+        # Arrange main layout
+        horizontal_layout.addLayout(text_layout)
+        horizontal_layout.addLayout(grid_layout)
         layout.addLayout(horizontal_layout)
 
         self.central_widget.setLayout(layout)
 
-    def create_button(self, text, method, font_size=14, align=Qt.AlignCenter):
+    def create_button(self, text, method, font_size=18):
         button = QPushButton(text)
         button.setFont(QFont("Arial", font_size))
         button.clicked.connect(method)
@@ -115,24 +104,10 @@ class AnimationWindow:
         return button
 
     def open_github_repo(self):
-        github_url = "https://github.com/harishy0406"
+        github_url = "https://github.com/harishy0406/CipherShield"
         QDesktopServices.openUrl(QUrl(github_url))
 
-    def confirm_quit(self, event=None):
-        confirm = QMessageBox.question(
-            self.window,
-            'Exit Confirmation',
-            'Are you sure you want to quit?',
-            QMessageBox.Yes | QMessageBox.No,
-            QMessageBox.No
-        )
-        if confirm == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()
-
     def confirm_quit_direct(self):
-        # Confirmation for Quit button to prevent double prompt
         confirm = QMessageBox.question(
             self.window,
             'Exit Confirmation',
@@ -150,7 +125,8 @@ class AnimationWindow:
         self.toolkit_window.showFullScreen()
 
         # Background image for toolkit window
-        background_image = QPixmap(r"toolkit back.jpg").scaled(self.toolkit_window.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation
+        background_image = QPixmap(r"toolkit back.jpg").scaled(
+            self.toolkit_window.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation
         )
         palette = QPalette()
         palette.setBrush(QPalette.Background, QBrush(background_image))
@@ -162,13 +138,6 @@ class AnimationWindow:
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignCenter)
 
-        # Create toolkit buttons
-        self.create_toolkit_buttons(layout)
-
-        central_widget.setLayout(layout)
-        self.toolkit_window.show()
-
-    def create_toolkit_buttons(self, layout):
         # Toolkit buttons with labels and methods
         buttons = [
             ("Password Manager", self.password_manager),
@@ -179,7 +148,7 @@ class AnimationWindow:
             ("Back", self.toolkit_window.close)
         ]
 
-        # Add buttons to layout
+        # Add buttons to toolkit layout
         for text, method in buttons:
             button = QPushButton(text)
             button.setFont(QFont("Arial", 30))
@@ -191,6 +160,49 @@ class AnimationWindow:
             button.setCursor(Qt.PointingHandCursor)
             layout.addWidget(button)
 
+        central_widget.setLayout(layout)
+        self.toolkit_window.show()
+
+    def open_team_members(self):
+        # Create a new window to display team members' information
+        self.team_window = QMainWindow()
+        self.team_window.setWindowTitle("Team Members")
+        self.team_window.resize(600, 400)
+
+        # Set up background image for the team window
+        team_background = QPixmap(r"team_background.jpg").scaled(
+            self.team_window.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation
+        )
+        palette = QPalette()
+        palette.setBrush(QPalette.Background, QBrush(team_background))
+        self.team_window.setPalette(palette)
+
+        # Set up central widget and layout for the team window
+        team_widget = QWidget()
+        team_layout = QVBoxLayout()
+
+        # Add team members' information
+        team_info = QLabel("Team Members:\n\n1. M Harish Gautham - 22MIS0421\n2. Azmil Ashruff - 22MIS0074\n3. Anmol Verma - 22MIS0153")
+        team_info.setFont(QFont("Arial", 16))
+        team_info.setStyleSheet("color: white;")
+        team_info.setAlignment(Qt.AlignLeft)
+        team_layout.addWidget(team_info)
+
+        # Add a "Back" button to return to the main window
+        back_button = QPushButton("Back")
+        back_button.setFont(QFont("Arial", 16))
+        back_button.clicked.connect(self.team_window.close)
+        back_button.setStyleSheet(
+            "background-color: #00000; color: white; border: 2px solid white; padding: 10px; text-align: center;"
+        )
+        back_button.setCursor(Qt.PointingHandCursor)
+        team_layout.addWidget(back_button)
+
+        team_widget.setLayout(team_layout)
+        self.team_window.setCentralWidget(team_widget)
+        self.team_window.show()
+
+    # Define toolkit feature methods
     def password_manager(self):
         subprocess.Popen(["python", r"password_manager.py"])
 
