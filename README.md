@@ -51,7 +51,6 @@ pip install -r requirements.txt
 ### Toolkit Interface
 
 
----
 
 ## 📞 Contact
 
@@ -60,12 +59,7 @@ For any inquiries or suggestions, feel free to reach out!
 - **Email:** your-email@example.com
 - **GitHub:** [your-github-profile](https://github.com/your-username)
 
----
-
 
 ---
 
-Thank you for using CipherShield! Stay safe and secure. 🔒
-``` 
-
-Feel free to replace the placeholder links, email, and paths with your actual information before using it!
+Thank you for visiting my CipherShield project! 😊 Feel free to explore and reach out if you have any questions or feedback. 📫
