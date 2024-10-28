@@ -20,7 +20,7 @@ Welcome to **CipherShield** – your all-in-one toolkit for cybersecurity essent
 
 Install the necessary packages:
 ```bash
-pip install -r requirements.txt
+pip install pyqt5
 ```
 
 ### Running CipherShield
