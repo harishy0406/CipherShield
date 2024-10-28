@@ -1,11 +1,9 @@
 # 🔐 CipherShield
-
 Welcome to **CipherShield** – your all-in-one toolkit for cybersecurity essentials! CipherShield provides tools for managing passwords, generating secure passwords, checking password strength, performing IP lookups, and encryption/decryption. 🛡️
 
 ---
 
 ## 📜 Features
-
 - **🔑 Password Manager** – Securely manage and store your passwords.
 - **🔒 Password Generator** – Create strong, random passwords to keep your accounts safe.
 - **🔍 Password Strength Checker** – Ensure your passwords meet high-security standards.
@@ -17,7 +15,6 @@ Welcome to **CipherShield** – your all-in-one toolkit for cybersecurity essent
 ## 🚀 Getting Started
 
 ### Prerequisites
-
 - **Python 3.6+** 🐍
 - **PyQt5** for a smooth graphical interface.
 
@@ -27,7 +24,6 @@ pip install -r requirements.txt
 ```
 
 ### Running CipherShield
-
 1. Clone this repository:
    ```bash
    git clone https://github.com/your-username/CipherShield.git
@@ -42,7 +38,6 @@ pip install -r requirements.txt
    ```
 
 ---
-
 ## 📸 Snapshots
 
 ### Main Window
@@ -53,7 +48,6 @@ pip install -r requirements.txt
 
 
 ## 📞 Contact
-
 For any inquiries or suggestions, feel free to reach out!
 
 - **Email:** your-email@example.com
@@ -61,5 +55,4 @@ For any inquiries or suggestions, feel free to reach out!
 
 
 ---
-
 Thank you for visiting my CipherShield project! 😊 Feel free to explore and reach out if you have any questions or feedback. 📫
