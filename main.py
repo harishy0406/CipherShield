@@ -125,7 +125,7 @@ class AnimationWindow:
         self.toolkit_window.showFullScreen()
 
         # Background image for toolkit window
-        background_image = QPixmap(r"toolkit back.jpg").scaled(
+        background_image = QPixmap(r"toolkit back.png").scaled(
             self.toolkit_window.size(), Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation
         )
         palette = QPalette()
