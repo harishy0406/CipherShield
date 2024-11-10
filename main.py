@@ -182,7 +182,7 @@ class AnimationWindow:
         team_layout = QVBoxLayout()
 
         # Add team members' information
-        team_info = QLabel("Team Members:\n\n1. M Harish Gautham - 22MIS0421\n2. Azmil Ashruff - 22MIS0074\n3. Anmol Verma - 22MIS0153")
+        team_info = QLabel("Team Members:\n\n1.Anmol Verma - 22MIS0153\n2. Azmil Ashruff - 22MIS0074\n3. M Harish Gautham - 22MIS0421\n4. Ratnesh Chandra Pandey - 22MIS0009\n5. Prasoon Jha - 22MIS0033 ")
         team_info.setFont(QFont("Arial", 16))
         team_info.setStyleSheet("color: white;")
         team_info.setAlignment(Qt.AlignLeft)
